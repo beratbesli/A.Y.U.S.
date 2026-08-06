@@ -1,8 +1,8 @@
 # A.Y.U.S.
 
-A.Y.U.S. is a prototype developed by the EYBAL team during the TUA Astro Hackathon. It uses an input image to build a risk map and visualise candidate evacuation routes.
+A.Y.U.S., EYBAL ekibinin TUA Astro Hackathon kapsamında geliştirdiği bir prototiptir. Bir girdi görselini işleyerek risk haritası oluşturur ve olası tahliye rotalarını görselleştirir.
 
-## Setup
+## Kurulum
 
 ```bash
 git clone https://github.com/beratbesli/A.Y.U.S..git
@@ -10,26 +10,26 @@ cd A.Y.U.S.
 python -m venv .venv
 ```
 
-Activate the virtual environment and install dependencies:
+Sanal ortamı etkinleştirdikten sonra bağımlılıkları yükleyin:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-`depremfoto.png` is the default input image and is tracked in the repository.
+`depremfoto.png` varsayılan girdi görselidir ve depoda takip edilir.
 
-## Run
+## Çalıştırma
 
 ```bash
 python A.Y.U.S..py
 ```
 
-The program can create `afet_rota_sonuclari.png` and `afet_risk_haritasi.png`. These generated outputs are ignored by Git. Use `kalibrasyon.py` to interactively tune image-processing thresholds.
+Program `afet_rota_sonuclari.png` ve `afet_risk_haritasi.png` dosyalarını oluşturabilir. Bu üretilen çıktılar Git tarafından yok sayılır. Görüntü işleme eşiklerini etkileşimli olarak ayarlamak için `kalibrasyon.py` dosyasını kullanabilirsiniz.
 
-## Safety notice
+## Güvenlik notu
 
-This is a hackathon prototype that processes a static image. It is not validated for emergency response, navigation, medical, safety-critical or real-world disaster-management decisions. Always use authorised emergency services and verified operational data.
+Bu proje statik bir görseli işleyen hackathon prototipidir. Acil müdahale, navigasyon, tıbbi kullanım, güvenlik açısından kritik senaryolar veya gerçek afet yönetimi kararları için doğrulanmış değildir. Her zaman yetkili acil durum hizmetlerini ve doğrulanmış operasyonel verileri kullanın.
 
-## License
+## Lisans
 
-Released under the [MIT License](LICENSE).
+[MIT Lisansı](LICENSE) ile sunulmaktadır.
