@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 from .config import PlannerConfig, load_config
+from .geospatial import GeoBounds, write_geojson
 from .image_processing import load_image
 from .planner import RoutePlan, generate_route_plan, write_image
 from .visualization import show_results
@@ -30,6 +31,7 @@ def build_parser():
     parser.add_argument("--end", type=_node, help="Bitiş hedefi: satır,sütun")
     parser.add_argument("--algorithm", choices=("dijkstra", "aco"), help="Rota algoritması; varsayılan dijkstra")
     parser.add_argument("--seed", type=int, help="ACO için deterministik seed")
+    parser.add_argument("--bounds", type=GeoBounds.from_csv, help="GeoJSON sınırları: min_lon,min_lat,max_lon,max_lat")
     parser.add_argument("--no-save", action="store_true", help="Görüntü çıktısı kaydetme")
     parser.add_argument("--show", action="store_true", help="Sonuç pencerelerini göster")
     return parser
@@ -71,6 +73,8 @@ def main(argv: list[str] | None = None) -> int:
             args.output_dir.mkdir(parents=True, exist_ok=True)
             write_image(args.output_dir / "afet_rota_sonuclari.png", plan.result_image)
             write_image(args.output_dir / "afet_risk_haritasi.png", plan.risk_image)
+            if args.bounds:
+                write_geojson(args.output_dir / "routes.geojson", plan.routes, plan.grid, args.bounds)
             print(f"Çıktılar kaydedildi: {args.output_dir.resolve()}")
         if args.show:
             show_results(plan.result_image, plan.risk_image)

@@ -52,6 +52,14 @@ python -m ayus --algorithm aco --seed 42
 
 Çıktılar `outputs/afet_rota_sonuclari.png` ve `outputs/afet_risk_haritasi.png` olarak yazılır. Rota uzunluğu görüntünün gerçek piksel geometrisine göre hesaplanır; “açıklık” değeri grid içindeki göreli clearance ölçüsüdür.
 
+Görüntünün kuzey-yukarı olduğunu biliyorsanız rota çizgilerini WGS84 GeoJSON olarak da dışa aktarabilirsiniz:
+
+```bash
+python -m ayus --bounds 36.80,36.55,36.90,36.65
+```
+
+Bu seçenek `outputs/routes.geojson` üretir. Koordinat dönüşümü yalnızca verilen görüntü sınırları için doğrusal bir eşlemedir; gerçek ortofoto/uydu projeksiyonu, datum ve yol ağı doğrulaması sağlamaz.
+
 ## Kalibrasyon
 
 ```bash
