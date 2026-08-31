@@ -36,7 +36,7 @@ Projeyi indirdikten sonra `kurulum.bat` dosyasına çift tıklayın. Kurulum bit
 
 Uygulamada görüntüyü seçin, isterseniz kalibrasyon JSON dosyanızı yükleyin ve `Rota oluştur` düğmesine basın. `Rotalar` sekmesinde birincil ve alternatif yolları, `Risk haritası` sekmesinde göreli risk alanlarını görebilirsiniz. Çıktılar ayrıca seçtiğiniz klasöre PNG olarak kaydedilir.
 
-GitHub’daki `Windows application` iş akışı elle çalıştırıldığında veya `v*` etiketi gönderildiğinde Windows için `A.Y.U.S.-windows.zip` artefaktı üretir. Paket, uygulamayı ve örnek görüntüyü içerir.
+GitHub’daki `Windows application` iş akışı elle çalıştırıldığında Windows için `A.Y.U.S.-windows.zip` artefaktı üretir. `v*` etiketi gönderildiğinde aynı ZIP otomatik olarak GitHub Release asset’i olarak da yayınlanır. Paket, uygulamayı ve örnek görüntüyü içerir.
 
 ## Çalıştırma
 
