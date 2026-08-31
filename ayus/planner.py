@@ -8,7 +8,7 @@ import networkx as nx
 import numpy as np
 
 from .config import PlannerConfig
-from .image_processing import build_risk_maps, clear_safe_zone, compute_clearance_map
+from .image_processing import GridSpec, build_risk_maps, clear_safe_zone, compute_clearance_map
 from .metrics import compute_route_metrics
 from .routing import Node, build_graph, choose_endpoints, find_corner_anchor, generate_backup_routes, run_aco
 from .visualization import draw_result, draw_risk_heatmap
@@ -22,6 +22,7 @@ class RoutePlan:
     used_fallback: bool
     routes: list[list[Node]]
     route_metrics: list[dict]
+    grid: GridSpec
     result_image: np.ndarray
     risk_image: np.ndarray
 
@@ -85,5 +86,5 @@ def generate_route_plan(
     )
     risk_image = draw_risk_heatmap(image, maps.buffered_risk, blocked_mask, maps.grid, start_node, end_node)
     return RoutePlan(
-        start_node, end_node, float(primary_cost), used_fallback, routes, metrics, result_image, risk_image
+        start_node, end_node, float(primary_cost), used_fallback, routes, metrics, maps.grid, result_image, risk_image
     )
