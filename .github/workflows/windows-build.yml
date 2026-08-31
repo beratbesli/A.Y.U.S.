@@ -12,21 +12,28 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v7
-        with:
-          # The repository name ends in a dot, which is invalid as a Windows directory name.
-          path: ayus
+      - name: Checkout repository to a safe Windows path
+        shell: pwsh
+        working-directory: ${{ runner.temp }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git -c http.extraheader="AUTHORIZATION: bearer $env:GITHUB_TOKEN" clone --no-tags "https://github.com/${{ github.repository }}.git" ayus
+          Set-Location ayus
+          git fetch --depth 1 origin $env:GITHUB_SHA
+          git checkout --detach $env:GITHUB_SHA
       - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
       - run: python -m pip install --upgrade pip
-        working-directory: ayus
+        working-directory: ${{ runner.temp }}\ayus
       - run: python -m pip install -r requirements-build.txt
-        working-directory: ayus
+        working-directory: ${{ runner.temp }}\ayus
       - run: python -m PyInstaller --clean --noconfirm ayus.spec
-        working-directory: ayus
+        working-directory: ${{ runner.temp }}\ayus
       - name: Prepare package
         shell: pwsh
+        working-directory: ${{ runner.temp }}
         run: |
           New-Item -ItemType Directory -Force -Path package | Out-Null
           Copy-Item ayus\dist\A.Y.U.S.exe package\A.Y.U.S.exe
@@ -36,4 +43,4 @@ jobs:
       - uses: actions/upload-artifact@v6
         with:
           name: A.Y.U.S.-windows
-          path: A.Y.U.S.-windows.zip
+          path: ${{ runner.temp }}\A.Y.U.S.-windows.zip
