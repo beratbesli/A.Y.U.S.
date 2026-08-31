@@ -30,7 +30,19 @@ source .venv/bin/activate
 python -m pip install -r requirements-dev.txt
 ```
 
+## Kolay kullanım (Windows)
+
+Projeyi indirdikten sonra `kurulum.bat` dosyasına çift tıklayın. Kurulum bitince `baslat.bat` dosyasına çift tıklayarak görsel uygulamayı açabilirsiniz.
+
+Uygulamada görüntüyü seçin, isterseniz kalibrasyon JSON dosyanızı yükleyin ve `Rota oluştur` düğmesine basın. `Rotalar` sekmesinde birincil ve alternatif yolları, `Risk haritası` sekmesinde göreli risk alanlarını görebilirsiniz. Çıktılar ayrıca seçtiğiniz klasöre PNG olarak kaydedilir.
+
 ## Çalıştırma
+
+Parametre vermeden çalıştırmak görsel arayüzü açar:
+
+```bash
+python -m ayus
+```
 
 Varsayılan çalışma:
 
@@ -42,6 +54,12 @@ Sunucu/CI gibi grafik arayüzü olmayan ortamlarda `--show` kullanmayın. Başla
 
 ```bash
 python -m ayus --input depremfoto.png --start 2,3 --end 37,36 --no-save
+```
+
+Görsel arayüzü açıkça başlatmak için `--gui` kullanılabilir:
+
+```bash
+python -m ayus --gui
 ```
 
 Varsayılan ve önerilen rota algoritması Dijkstra’dır. Seed’li ACO denemek için:
