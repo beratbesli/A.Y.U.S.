@@ -12,6 +12,8 @@ outputs-*/
 ayus_config.json
 *.egg-info/
 build/
+dist/
+*.exe
 .pytest_cache/
 .ruff_cache/
 .pytest-tmp/

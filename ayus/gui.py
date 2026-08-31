@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import base64
 import os
+import sys
 import threading
 import tkinter as tk
 from pathlib import Path
@@ -14,6 +15,20 @@ from .image_processing import load_image
 from .planner import RoutePlan, generate_route_plan, write_image
 
 
+def _application_dir() -> Path:
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parents[1]
+
+
+def _default_input_path() -> Path:
+    candidates = [_application_dir() / "depremfoto.png"]
+    if hasattr(sys, "_MEIPASS"):
+        candidates.append(Path(sys._MEIPASS) / "depremfoto.png")
+    candidates.append(Path("depremfoto.png"))
+    return next((path for path in candidates if path.is_file()), candidates[0])
+
+
 class AyusApp:
     """Small desktop interface for exploring route and risk images."""
 
@@ -23,9 +38,11 @@ class AyusApp:
         self.root.geometry("1280x820")
         self.root.minsize(900, 650)
 
-        self.input_var = tk.StringVar(value=str(initial_input or Path("depremfoto.png")))
+        default_input = initial_input or _default_input_path()
+        default_output = _application_dir() / "outputs" if getattr(sys, "frozen", False) else Path("outputs")
+        self.input_var = tk.StringVar(value=str(default_input))
         self.config_var = tk.StringVar()
-        self.output_var = tk.StringVar(value="outputs")
+        self.output_var = tk.StringVar(value=str(default_output))
         self.algorithm_var = tk.StringVar(value="Dijkstra (önerilen)")
         self.status_var = tk.StringVar(value="Hazır. Bir görüntü seçip rota oluşturabilirsiniz.")
         self.summary_var = tk.StringVar(value="Henüz rota oluşturulmadı.")
