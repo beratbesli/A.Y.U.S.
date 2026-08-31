@@ -23,6 +23,7 @@ def _node(value: str) -> tuple[int, int]:
 
 def build_parser():
     parser = argparse.ArgumentParser(description="A.Y.U.S. görüntü tabanlı rota planlayıcı")
+    parser.add_argument("--gui", action="store_true", help="Kolay kullanımlı masaüstü arayüzünü aç")
     parser.add_argument("--input", type=Path, default=Path("depremfoto.png"), help="İşlenecek görüntü")
     parser.add_argument("--output-dir", type=Path, default=Path("outputs"), help="Çıktı klasörü")
     parser.add_argument("--config", type=Path, help="Kalibrasyon JSON dosyası")
@@ -65,6 +66,10 @@ def _print_plan(plan: RoutePlan) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.gui:
+        from .gui import launch_gui
+
+        return launch_gui(args.input)
     try:
         config = _config_from_args(args)
         image = load_image(args.input)

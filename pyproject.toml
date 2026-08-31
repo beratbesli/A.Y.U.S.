@@ -22,6 +22,7 @@ dev = [
 
 [project.scripts]
 ayus = "ayus.cli:main"
+ayus-gui = "ayus.gui:launch_gui"
 
 [tool.setuptools.packages.find]
 include = ["ayus*"]
