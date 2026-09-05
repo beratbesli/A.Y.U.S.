@@ -4,8 +4,6 @@
 
 Görüntü tabanlı göreli risk haritası çıkaran ve geçilebilir alanlar üzerinden rota öneren, TUA Astro Hackathon için geliştirilmiş bir afet rota planlama prototipi.
 
-> **Uyarı:** Bu uygulama gerçek acil durum yönetimi veya navigasyon sistemi değildir. Resmî kurumların talimatları her zaman önceliklidir.
-
 ## Hızlı başlangıç
 
 Depoyu indirin:
