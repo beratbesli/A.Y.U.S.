@@ -38,6 +38,57 @@ Uygulamada görüntüyü seçin, isterseniz kalibrasyon JSON dosyanızı yükley
 
 GitHub’daki `Windows application` iş akışı elle çalıştırıldığında Windows için `A.Y.U.S.-windows.zip` artefaktı üretir. `v*` etiketi gönderildiğinde aynı ZIP otomatik olarak GitHub Release asset’i olarak da yayınlanır. Paket, uygulamayı ve örnek görüntüyü içerir.
 
+## Kolay kullanım (Linux - AppImage ve .deb)
+
+Linux ortamında uygulamayı Python bağımlılığı olmadan doğrudan çalıştırmak veya sisteme kurmak için paketleme yapabilirsiniz:
+
+### Paketleme (`paketle.sh`)
+Linux terminalinde tek komutla hem `.deb` hem de `.AppImage` paketlerini üretmek için:
+
+```bash
+./paketle.sh
+```
+
+Bu betik otomatik olarak:
+1. PyInstaller ile tek dosyalı çalıştırılabilir ikiliyi (`dist/A.Y.U.S`) üretir.
+2. Debian/Ubuntu için doğrudan kurulabilir `dist/ayus_0.3.0_amd64.deb` paketini hazırlar.
+3. Herhangi bir Linux dağıtımında taşınabilir çalışabilen `dist/A.Y.U.S-0.3.0-x86_64.AppImage` paketini oluşturur.
+
+### AppImage ile Çalıştırma
+Hiçbir kurulum yapmadan doğrudan çalıştırmak için:
+
+```bash
+chmod +x dist/A.Y.U.S-0.3.0-x86_64.AppImage
+./dist/A.Y.U.S-0.3.0-x86_64.AppImage
+```
+
+Veya dosya yöneticisinden çift tıklayarak doğrudan başlatabilirsiniz.
+
+### Debian / Ubuntu (.deb) Kurulumu
+Uygulamayı sisteme, masaüstü uygulama menüsüne ve komut satırına entegre etmek için:
+
+```bash
+sudo apt install ./dist/ayus_0.3.0_amd64.deb
+# veya
+sudo dpkg -i ./dist/ayus_0.3.0_amd64.deb
+```
+
+Kurulduktan sonra:
+- Uygulama menüsünden **A.Y.U.S.** simgesine tıklayarak görsel arayüzü açabilirsiniz.
+- Terminalden doğrudan `ayus` komutuyla arayüzü veya `ayus --help` komutuyla CLI aracını çalıştırabilirsiniz.
+
+Kaldırmak için:
+```bash
+sudo apt remove ayus
+```
+
+### Hızlı Başlatma Betikleri (Linux)
+Geliştirme ortamında çalıştırmak için:
+- `./kurulum.sh`: Sanal ortamı oluşturur ve geliştirme bağımlılıklarını kurar.
+- `./baslat.sh`: Uygulamayı doğrudan başlatır.
+
+GitHub Actions üzerindeki `Linux application` iş akışı ile `v*` etiketlerinde `.deb` ve `.AppImage` paketleri otomatik olarak derlenip Release varlıklarına eklenir.
+
 ## Çalıştırma
 
 Parametre vermeden çalıştırmak görsel arayüzü açar:

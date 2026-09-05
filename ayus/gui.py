@@ -29,6 +29,18 @@ def _default_input_path() -> Path:
     return next((path for path in candidates if path.is_file()), candidates[0])
 
 
+def _default_icon_path() -> Path | None:
+    candidates = [
+        _application_dir() / "assets" / "ayus.png",
+        _application_dir() / "ayus.png",
+    ]
+    if hasattr(sys, "_MEIPASS"):
+        candidates.append(Path(sys._MEIPASS) / "assets" / "ayus.png")
+        candidates.append(Path(sys._MEIPASS) / "ayus.png")
+    candidates.append(Path("assets/ayus.png"))
+    return next((path for path in candidates if path.is_file()), None)
+
+
 class AyusApp:
     """Small desktop interface for exploring route and risk images."""
 
@@ -37,6 +49,14 @@ class AyusApp:
         self.root.title("A.Y.U.S. - Afet Rota Planlayıcı")
         self.root.geometry("1280x820")
         self.root.minsize(900, 650)
+
+        icon_path = _default_icon_path()
+        if icon_path:
+            try:
+                self._app_icon = tk.PhotoImage(file=str(icon_path))
+                self.root.iconphoto(False, self._app_icon)
+            except tk.TclError:
+                self._app_icon = None
 
         default_input = initial_input or _default_input_path()
         default_output = _application_dir() / "outputs" if getattr(sys, "frozen", False) else Path("outputs")

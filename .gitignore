@@ -14,6 +14,10 @@ ayus_config.json
 build/
 dist/
 *.exe
+*.AppImage
+*.deb
 .pytest_cache/
 .ruff_cache/
 .pytest-tmp/
+dist/
+build/
