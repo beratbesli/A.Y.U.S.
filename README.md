@@ -1,3 +1,5 @@
+![A.Y.U.S.](assets/ayus-header.png)
+
 # A.Y.U.S.
 
 A.Y.U.S., EYBAL ekibinin TUA Astro Hackathon kapsamında geliştirdiği, görüntü tabanlı afet rota planlama prototipidir. Görüntü kenar yoğunluğundan göreli bir risk haritası çıkarır ve geçilebilir grid hücreleri üzerinden rota önerir.
