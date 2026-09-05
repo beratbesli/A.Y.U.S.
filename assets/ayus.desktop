@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=A.Y.U.S.
+GenericName=Afet Rota Planlayıcı
+Comment=A.Y.U.S. görüntü tabanlı afet rota planlama prototipi
+Exec=ayus
+Icon=ayus
+Terminal=false
+Categories=Utility;
+Keywords=ayus;afet;rota;deprem;harita;planner;
+StartupNotify=true
+StartupWMClass=A.Y.U.S
