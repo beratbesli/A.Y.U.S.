@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/ayus-header.png" alt="A.Y.U.S." width="240">
+  <img src="assets/ayus-header.png" alt="A.Y.U.S." width="560">
 </p>
 
 Görüntü tabanlı göreli risk haritası çıkaran ve geçilebilir alanlar üzerinden rota öneren, TUA Astro Hackathon için geliştirilmiş bir afet rota planlama prototipi.
